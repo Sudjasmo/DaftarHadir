@@ -109,7 +109,7 @@ window.addEventListener('DOMContentLoaded', () => {
             tandaTangan: signatureDataUrl
         };
 
-        fetch('http://localhost:3000/submit', {
+        fetch('https://sudjasmo.github.io/DaftarHadir/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
@@ -127,4 +127,5 @@ window.addEventListener('DOMContentLoaded', () => {
             alert('Terjadi kesalahan saat mengirim data. Pastikan server sudah berjalan.');
         });
     });
+
 });
