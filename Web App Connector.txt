@@ -1,0 +1,28 @@
+// Fungsi ini akan berjalan ketika ada permintaan data (POST) dari aplikasi web kita
+function doPost(e) {
+  // Buka spreadsheet yang aktif
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // Ambil data dari formulir yang dikirimkan
+  var nama = e.parameter.nama;
+  var jabatan = e.parameter.jabatan;
+  var instansi = e.parameter.instansi;
+  var email = e.parameter.email;
+  var telepon = e.parameter.telepon;
+  var tandatangan = e.parameter.tandatangan;
+  
+  // Buat baris baru dengan data yang diterima
+  // Urutannya harus sama dengan kolom di Sheet Anda
+  sheet.appendRow([
+    new Date(), // Timestamp otomatis
+    nama,
+    jabatan,
+    instansi,
+    email,
+    telepon,
+    tandatangan
+  ]);
+  
+  // Beri respons kembali ke aplikasi web bahwa data berhasil diterima
+  return ContentService.createTextOutput("Data berhasil dikirim dan disimpan ke Google Sheet!");
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Hadir Digital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h2>Daftar Hadir</h2>
+            <p><strong>Kegiatan:</strong> UNAR Reguler I Tahun 2026</p>
+            <p><strong>Lokasi:</strong> Kantor Loka Monitor Spektrum Frekuensi Radio Mamuju</p>
+            <p><strong>Tanggal:</strong> 9 Februari 2026</p>
+            <p><strong>Waktu:</strong> 09:30 WITA - Selesai</p>
+        </header>
+
+        <main>
+            <form id="attendance-form">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="jabatan">Jabatan</label>
+                    <input type="text" id="jabatan" name="jabatan" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="instansi">Satuan Kerja / Instansi</label>
+                    <input type="text" id="instansi" name="instansi" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telepon">No. Telepon / HP</label>
+                    <input type="tel" id="telepon" name="telepon" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signature-pad">Tanda Tangan</label>
+                    <canvas id="signature-pad" width="400" height="150"></canvas>
+                    <button type="button" id="clear-signature">Hapus Tanda Tangan</button>
+                </div>
+
+                <button type="submit">Kirim Kehadiran</button>
+            </form>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

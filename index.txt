@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Acara</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        label { display: block; margin-top: 15px; }
+        input { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
+        button:hover { background-color: #45a049; }
+        #status { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Formulir Data Acara</h2>
+    <p>Isi data di bawah ini untuk menyimpannya ke Google Sheet.</p>
+
+    <!-- Formulir HTML -->
+    <form id="acaraForm">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" name="nama" required>
+
+        <label for="jabatan">Jabatan</label>
+        <input type="text" id="jabatan" name="jabatan" required>
+
+        <label for="instansi">Satuan Kerja / Instansi</label>
+        <input type="text" id="instansi" name="instansi" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="telepon">No. Telepon / HP</label>
+        <input type="tel" id="telepon" name="telepon" required>
+
+        <label for="tandatangan">Tanda Tangan:</label>
+        <input type="text" id="tandatangan" name="tandatangan" required>
+
+        <button type="submit">Kirim ke Google Sheet</button>
+    </form>
+
+    <!-- Elemen untuk menampilkan status pengiriman -->
+    <div id="status"></div>
+
+    <script>
+        // Ambil elemen formulir
+        const form = document.getElementById('acaraForm');
+        const statusDiv = document.getElementById('status');
+        
+        // URL Web App dari Google Apps Script Anda
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby5Mh4hjk0qY2YYI9e3U9yWPqVtDLAECiSDofU20vSv3lcF8rPyi9CCdoG_og2Pd4zg/exec'; // <-- GANTI DENGAN URL ANDA!
+
+        // Tambahkan event listener untuk saat formulir disubmit
+        form.addEventListener('submit', e => {
+            // Mencegah formulir mengirim data dengan cara default
+            e.preventDefault();
+            
+            // Tampilkan status "Mengirim..."
+            statusDiv.textContent = 'Mengirim data...';
+
+            // Kirim data formulir menggunakan fetch() ke URL Apps Script
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    // Tampilkan pesan sukses dari Apps Script
+                    statusDiv.textContent = 'Data berhasil dikirim!';
+                    console.log('Success!', response);
+                    // Kosongkan formulir setelah berhasil
+                    form.reset(); 
+                    // Hapus pesan sukses setelah 5 detik
+                    setTimeout(() => { statusDiv.textContent = ''; }, 5000);
+                })
+                .catch(error => {
+                    // Tampilkan pesan error jika gagal
+                    statusDiv.textContent = 'Error! Data gagal dikirim.';
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+
+</body>
+</html>
